@@ -32,6 +32,7 @@ def newMenuItem(restaurant_id):
             name=request.form['menuItemName'], restaurant_id=restaurant_id)
         session.add(newMenuItem)
         session.commit()
+        flash("new menu item created!")
         return redirect(url_for('restaurantMenu', restaurant_id=restaurant_id))
     else:
         return render_template('newmenuitem.html', restaurant_id=restaurant_id)
@@ -46,7 +47,7 @@ def editMenuItem(restaurant_id, menu_id):
         session.commit()
         return redirect(url_for('restaurantMenu', restaurant_id=restaurant_id))
     else:
-        return render_template('editmenuitem.html', menu_item=menuItem)
+        return render_template('editmenuitem.html', item=menuItem)
 
 # Task 3: Create a route for deleteMenuItem function here
 @app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/delete/', methods=['GET', 'POST'])
